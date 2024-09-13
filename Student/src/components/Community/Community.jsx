@@ -10,6 +10,8 @@ const Community = () => {
   const [problems, setProblems] = useState([]);
   const [change,setChange] = useState(false);
   const [answerCount,setAnswerCount] = useState(3)
+  const [answerNum,setAnswerNum] = useState(null);
+  const [problemNum,setProblemNum] = useState(null);
   const [loading,setLoading] = useState(false)
   const theme = useTheme()
   const small = theme.breakpoints.down('sm')
@@ -29,7 +31,7 @@ const Community = () => {
     <Container sx={{ pt: 5 }}>
         <AddProblem change={change} setChange={setChange}/>
       <Box>
-        {problems.map((item) => (
+        {problems.map((item,index) => (
           <>
             <Typography sx={{ fontSize: "1.3rem",[small]:{fontSize:'1.2rem'} }} component="p">
               <Typography
@@ -41,13 +43,18 @@ const Community = () => {
               {item.problem}
               <Button
                 sx={{ mt: 1, display: "block" }}
-                onClick={() => setTextAnswer(!textAnswer)}
+                onClick={() => {
+                    setAnswerNum(index)
+                    setTextAnswer(!textAnswer)
+                }}
                 variant="contained"
                 color='success'
               >
                 Add Your Answer
               </Button>
-             <AddAnswer setTextAnswer={setTextAnswer} change={change} setChange={setChange} problemId={item._id} textAnswer={textAnswer}/>
+            {
+              index==answerNum&&<AddAnswer setTextAnswer={setTextAnswer} change={change} setChange={setChange} problemId={item._id} textAnswer={textAnswer}/>
+            } 
               {item.answers.map((ans,ind) => (
                ind<answerCount&&<Typography
                   sx={{ ml: 4, fontSize: "1.3rem", [small]:{fontSize:'1.2rem',ml:2},mt: 3 }}
@@ -66,7 +73,10 @@ const Community = () => {
                 </Typography>
               ))}
               {
-                item.answers&&<Button onClick={()=>setAnswerCount(answerCount+3)}>show more answers</Button>
+                item.answers&&<Button onClick={()=>{
+          
+                  setAnswerCount(answerCount+3)
+                }}>show more answers</Button>
               }
             </Typography>
           </>

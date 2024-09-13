@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { signUp } from './Api';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie'
+import { Link } from 'react-router-dom';
 
 const SignUpForm = () => {
   // Validation schema using Yup
@@ -94,6 +95,9 @@ const SignUpForm = () => {
         <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>
+      <Typography sx={{textAlign:"center",width:'100%'}} component={Link} to='/login'>
+          already have an account? login
+          </Typography>
       </Box>
     </Box>
   );

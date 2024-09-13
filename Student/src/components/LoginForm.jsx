@@ -5,6 +5,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { login } from './Api';
 import Cookies from 'js-cookie'
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -30,6 +31,7 @@ const LoginForm = ({setToken}) => {
     if(res&&res.token){
 
         Cookies.set('token',res.token)
+        setToken(true)
         setIsLoggedIn(true)
         Swal.fire({
             icon:'success',
@@ -90,6 +92,9 @@ const LoginForm = ({setToken}) => {
             >
               {isSubmitting ? 'Logging in...' : 'Login'}
             </Button>
+          <Typography sx={{textAlign:"center",width:'100%'}} component={Link} to='/signup'>
+          don'nt have an account?signup
+          </Typography>
           </Box>
         </Form>
       )}

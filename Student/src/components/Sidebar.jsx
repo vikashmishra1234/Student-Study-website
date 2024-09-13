@@ -14,6 +14,7 @@ import Chatbot from '@mui/icons-material/SmartToy';
 import ShareFiles from '@mui/icons-material/CloudUpload';
 import Community from '@mui/icons-material/People';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import { Link } from 'react-router-dom';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -26,18 +27,20 @@ export default function TemporaryDrawer() {
     <Box sx={{ width: 250,paddingTop:'40px',color:'white',height:'100%',background:'black' }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {[
-          { text: 'Home', icon: <HomeIcon sx={{color:'white'}} /> },
-          { text: 'Chatbot', icon: <Chatbot sx={{color:'white'}} /> },
-          { text: 'Share Files', icon: <ShareFiles sx={{color:'white'}} /> },
-          { text: 'Community', icon: <Community sx={{color:'white'}} /> },
-          { text: 'Contact', icon: <ContactSupportIcon sx={{color:'white'}} /> }
+          { text: 'Home', icon: <HomeIcon sx={{color:'white'} } />,route:'/' },
+          { text: 'Chatbot', icon: <Chatbot sx={{color:'white'} } />,route:'/chatbot' },
+          { text: 'Share Files', icon: <ShareFiles sx={{color:'white'} } />,route:'/share/notes' },
+          { text: 'Community', icon: <Community sx={{color:'white'} } />,route:'/community' },
+          { text: 'Contact', icon: <ContactSupportIcon sx={{color:'white'} } />,route:'https://vikash-six.vercel.app' }
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.text} />
+              <Link to={item.route}>
+              <ListItemText sx={{color:'white'}} primary={item.text} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}

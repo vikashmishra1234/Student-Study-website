@@ -80,7 +80,7 @@ const LandingPage = () => {
                   fontSize: "3.4rem",
                   mb: 1,
                 },
-                [small]: { fontSize: "2.3rem" },
+                [small]: { fontSize: "2.5rem" },
               }}
             >
               Welcome to your journey of limitless learning!
@@ -124,7 +124,7 @@ const LandingPage = () => {
                 mr: 2,
                 fontSize: "1rem",
                 [small]: {
-                  fontSize: ".8rem",
+                  fontSize: "1rem",
                 },
               }}
             >
@@ -139,7 +139,7 @@ const LandingPage = () => {
                 mt: 2,
                 fontSize: "1rem",
                 [small]: {
-                  fontSize: ".8rem",
+                  fontSize: "1rem",
                 },
               }}
             >

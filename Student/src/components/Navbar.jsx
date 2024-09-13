@@ -47,10 +47,10 @@ const Navbar = () => {
             <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/community">
               Community
             </Button>
-            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/about">
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/chatbot">
               Try AI
             </Button>
-            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/contact">
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="https://vikash-six.vercel.app">
               Contact
             </Button>
           </Box>
