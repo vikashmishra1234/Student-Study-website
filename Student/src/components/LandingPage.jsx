@@ -6,6 +6,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles';
 import Community from './Community/Community';
+import ModernFooter from './Footer';
+import EnhancedUniqueFooter from './Footer';
 const image = 'https://t4.ftcdn.net/jpg/02/43/22/71/360_F_243227135_0MKgZJefxBmaClJmhFdgfSByHI4n8UVy.jpg'
 const heroStyle ={ 
         display:'flex'
@@ -14,7 +16,7 @@ const heroStyle ={
         backgroundImage: `url(${image})`,
         backgroundSize:'cover',
         backgroundRepeat:'no-repeat',
-        height: 'calc(100vh - 110px)',
+        height: 'calc(100vh)',
         color: 'white',
         padding: '20px'
      }
@@ -145,9 +147,7 @@ const heroStyle ={
         </Box>
       </Container>
       <Community/>
-      <Box sx={{ backgroundColor: '#1976d2', color: 'white', padding: '20px', textAlign: 'center' }}>
-        <Typography variant="body1">© 2024 MyApp. All rights reserved.</Typography>
-      </Box>
+      <EnhancedUniqueFooter/>
     </Box>
   );
 };

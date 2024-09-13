@@ -1,4 +1,3 @@
-// src/app/components/Navbar.tsx
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
@@ -9,18 +8,18 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 // import MenuIcon from '@mui/icons-material/Menu';
-import Sidebar from './Sidebar'
-
+import Sidebar from './Sidebar';
 
 const Navbar = () => {
-    const theme = useTheme();
-    const medium = theme.breakpoints.down('md');
-    const mediumUp = theme.breakpoints.up('md');
-    const [isMenuOpened,setMenuOpened] = React.useState(false)
+  const theme = useTheme();
+  const medium = theme.breakpoints.down('md');
+  const mediumUp = theme.breakpoints.up('md');
+  const [isMenuOpened, setMenuOpened] = React.useState(false);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{background:'black',height:'100px'}} position="static">
-        <Toolbar sx={{height:'100%'}}>
+      <AppBar sx={{ background: 'black', height: '100px' }} position="fixed">
+        <Toolbar sx={{ height: '100%' }}>
           <IconButton
             size="large"
             edge="start"
@@ -30,34 +29,30 @@ const Navbar = () => {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 ,fontSize:'1.5rem'}}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
             Student-Study-Portal
           </Typography>
 
-          <Box sx={{[mediumUp]:{
-            display:'none'
-          }}}>
-            <Sidebar/>
+          <Box sx={{ [mediumUp]: { display: 'none' } }}>
+            <Sidebar />
           </Box>
 
-          <Box sx={{[medium]:{
-            display:'none'
-          }}} >
-          <Button sx={{fontSize:"1.4rem", textTransform:'none',ml:3}} color="inherit" component={Link} to="/">
-            Home
-          </Button>
-          <Button sx={{fontSize:"1.4rem", textTransform:'none',ml:3}} color="inherit" component={Link} to="/share/notes">
-            Share Notes
-          </Button>
-          <Button sx={{fontSize:"1.4rem", textTransform:'none',ml:3}} color="inherit" component={Link} to="/community">
-            Community
-          </Button>
-          <Button sx={{fontSize:"1.4rem", textTransform:'none',ml:3}} color="inherit" component={Link} to="/about">
-            Try AI
-          </Button>
-          <Button sx={{fontSize:"1.4rem", textTransform:'none',ml:3}} color="inherit" component={Link} to="/contact">
-            Contact
-          </Button>
+          <Box sx={{ [medium]: { display: 'none' } }}>
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/">
+              Home
+            </Button>
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/share/notes">
+              Share Notes
+            </Button>
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/community">
+              Community
+            </Button>
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/about">
+              Try AI
+            </Button>
+            <Button sx={{ fontSize: "1.4rem", textTransform: 'none', ml: 3 }} color="inherit" component={Link} to="/contact">
+              Contact
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
