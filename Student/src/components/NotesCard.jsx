@@ -21,7 +21,7 @@ export default function BasicCard({subjectCode,subjectName,year,category,fileUrl
         <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>SubjecName: {subjectName}</Typography>
         <Typography variant="body2">
          these notes are for helping the student.
-         please visit <a href="https:vikash-six.vercel.app">vikash mishra</a>
+         please visit <a href="https://vikash-six.vercel.app">vikash mishra</a>
           <br />
         </Typography>
       </CardContent>
