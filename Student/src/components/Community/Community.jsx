@@ -3,22 +3,28 @@ import React, { useEffect, useState } from "react";
 import { getAllProblems } from "../Api";
 import AddAnswer from "./AddAnswer";
 import AddProblem from "./AddProblem";
+import Loader from "../Loader";
 
 const Community = () => {
   const [textAnswer, setTextAnswer] = useState(false);
   const [problems, setProblems] = useState([]);
   const [change,setChange] = useState(false);
   const [answerCount,setAnswerCount] = useState(3)
+  const [loading,setLoading] = useState(false)
   const theme = useTheme()
   const small = theme.breakpoints.down('sm')
   useEffect(() => {
     const getData = async () => {
+      setLoading(true)
       const res = await getAllProblems();
+      setLoading(false)
       setProblems(res.data);
-      console.log(res);
     };
     getData();
   }, [change]);
+  if(loading){
+    return <Loader/>
+  }
   return (
     <Container sx={{ pt: 5 }}>
         <AddProblem change={change} setChange={setChange}/>

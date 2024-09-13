@@ -169,7 +169,7 @@ export default function EnhancedUniqueFooter() {
               whileHover={{ y: -3 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <span style={{marginRight:'15px',fontSize:"1.3rem",color:'white',textDecoration:'none'}}>{text}</span>
+              <span style={{marginRight:'15px',fontSize:"1.1rem",color:'white',textDecoration:'none'}}>{text}</span>
             </AnimatedLink>
           ))}
         </Box>

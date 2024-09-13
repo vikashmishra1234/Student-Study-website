@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ background: 'black', height: '100px' }} position="fixed">
+      <AppBar sx={{ background: 'black', height: '100px',position:'sticky',top:'0' }} >
         <Toolbar sx={{ height: '100%' }}>
           <IconButton
             size="large"

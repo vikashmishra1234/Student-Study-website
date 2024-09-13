@@ -8,8 +8,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { RxHamburgerMenu } from "react-icons/rx";
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import Chatbot from '@mui/icons-material/SmartToy';
+import ShareFiles from '@mui/icons-material/CloudUpload';
+import Community from '@mui/icons-material/People';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -19,41 +23,37 @@ export default function TemporaryDrawer() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250,paddingTop:'40px',color:'white',height:'100%',background:'black' }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {[
+          { text: 'Home', icon: <HomeIcon sx={{color:'white'}} /> },
+          { text: 'Chatbot', icon: <Chatbot sx={{color:'white'}} /> },
+          { text: 'Share Files', icon: <ShareFiles sx={{color:'white'}} /> },
+          { text: 'Community', icon: <Community sx={{color:'white'}} /> },
+          { text: 'Contact', icon: <ContactSupportIcon sx={{color:'white'}} /> }
+        ].map((item) => (
+          <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer(true)}><RxHamburgerMenu size={'30px'} color='white'/></Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+    <Box>
+      <Button onClick={toggleDrawer(true)}>
+        <MenuIcon sx={{ fontSize: '30px', color: 'white' }} />
+      </Button>
+      <Drawer  open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
-    </div>
+    </Box>
   );
 }
