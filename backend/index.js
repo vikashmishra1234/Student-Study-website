@@ -13,7 +13,7 @@ const PORT = 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://student-study-website.vercel.app"],
+    origin: ["http://localhost:5173","https://student-study-website.vercel.app","https://books-selling.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
