@@ -1,10 +1,11 @@
 const Razorpay = require('razorpay');
 exports.RozerPay=async(req,res)=>{
     const instance = new Razorpay({
-        key_id: 'rzp_test_fel0ufDTc7efv6',
-      key_secret: 'cPeENVH9g90j8sydZ1KEoztB',
+        key_id: process.env.RZRPY_KEY,
+      key_secret: process.env.RZRPY_SECRT,
     });
-
+console.log(process.env.RZRPY_KEY)
+console.log(process.env.RZRPY_SECRT)
   const options = {
     amount: req.body.amount * 100, // Amount in paise
     currency: 'INR',
@@ -27,7 +28,7 @@ exports.verifyPayments = async(req,res)=>{
     const crypto = require('crypto');
    
   const generated_signature = crypto
-    .createHmac('sha256', 'cPeENVH9g90j8sydZ1KEoztB')
+    .createHmac('sha256', process.env.RZRPY_SECRT)
     .update(razorpay_order_id + '|' + razorpay_payment_id)
     .digest('hex');
     if (generated_signature === razorpay_signature) {
