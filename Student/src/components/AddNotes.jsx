@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 const categories = ['Books', 'Notes', 'Previous Year', 'Other']
 
 export default function AddNotes() {
+  const [loading,setLoading] = useState('')
   const [formData, setFormData] = useState({
     subjectCode: '',
     subjectName: '',
@@ -34,21 +35,31 @@ export default function AddNotes() {
   }
 
   const handleFileChange = async(e) => {
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
-    formData.append("upload_preset", "vikashmishra");
-    const res = await axios.post("https://api.cloudinary.com/v1_1/dwjh8zji6/image/upload", formData)
-    console.log(res.data.secure_url)
-    setFormData(prevData => ({
-      ...prevData,
-      file: res.data.secure_url
-    }))
-    // Clear error if file is selected
-    if (errors.file) {
-      setErrors(prevErrors => ({
-        ...prevErrors,
-        file: ''
-      }))
+    try {
+      const selectedFile = e.target.files[0];
+      if (!selectedFile) {
+        throw new Error("No file selected.");
+      }
+
+      // Create FormData for the file upload
+      const formDat = new FormData();
+      formDat.append("file", selectedFile);
+      formDat.append("upload_preset", "l3shyrzx"); // Unsigned preset name
+
+      // Upload to Cloudinary
+      setLoading(true)
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/vikashcloud/raw/upload",
+        formDat
+      );
+      setLoading(false)
+      console.log("Uploaded file URL:", response.data.secure_url);
+
+      // Update state with the uploaded file URL
+      formData.file=response.data.secure_url
+    } catch (err) {
+      setLoading(false)
+      console.error("Error uploading file:", err);
     }
   }
 
@@ -65,23 +76,30 @@ export default function AddNotes() {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    if (validateForm()) {
-        console.log(formData)
-      const res = await addNotes(formData);
-      if(res){
-        Swal.fire({
-            icon:'success',
-            title:'success',
-            text:'Notes has been uploaded'
-        })
-          setFormData({
-            year:'',
-            subjectCode: '',
-            subjectName: '',
-            file: null, // Reset file to null
-            category: '',
+    try {
+      if (validateForm()) {
+          console.log(formData)
+          setLoading(true)
+        const res = await addNotes(formData);
+        setLoading(false)
+        if(res){
+          Swal.fire({
+              icon:'success',
+              title:'success',
+              text:'Notes has been uploaded'
           })
+            setFormData({
+              year:'',
+              subjectCode: '',
+              subjectName: '',
+              file: null, // Reset file to null
+              category: '',
+            })
+        }
       }
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
     }
   }
 
@@ -175,7 +193,7 @@ export default function AddNotes() {
             fullWidth
             sx={{ mt: 3 }}
           >
-            Submit
+          {loading?'Loading...':'Submit'}
           </Button>
         </motion.div>
       </Box>

@@ -5,10 +5,11 @@ import * as Yup from 'yup';
 import { signUp } from './Api';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   // Validation schema using Yup
+  const navigate = useNavigate()
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     phone: Yup.string()
@@ -33,6 +34,7 @@ const SignUpForm = () => {
      const res = await signUp(values);
      if(res&&res.token){
         Cookies.set('token',res.token);
+        navigate('/share/notes')
         Swal.fire({
             icon:'success',
             title:res.message

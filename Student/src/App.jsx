@@ -15,6 +15,7 @@ const App = () => {
   const [token,setToken] = useState(false);
   const authToken = Cookies.get('token');
   useEffect(()=>{
+    // Cookies.remove('token')
     if(authToken){
       setToken(true)
     }

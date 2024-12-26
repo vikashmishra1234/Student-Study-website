@@ -5,7 +5,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { login } from './Api';
 import Cookies from 'js-cookie'
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -18,6 +18,7 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = ({setToken}) => {
+  const Navigate = useNavigate();
   const [isLoggedIn,setIsLoggedIn] = useState(false);
   useEffect(()=>{
     if(isLoggedIn){
@@ -31,6 +32,7 @@ const LoginForm = ({setToken}) => {
     if(res&&res.token){
 
         Cookies.set('token',res.token)
+        Navigate('/share/notes')
         setToken(true)
         setIsLoggedIn(true)
         Swal.fire({
